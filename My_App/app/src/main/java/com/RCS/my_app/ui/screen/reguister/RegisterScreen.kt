@@ -4,11 +4,12 @@ package com.RCS.my_app.ui.screens.register
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.unit.dp
+
 import com.RCS.my_app.ui.components.buttons.GlassButton
 import com.RCS.my_app.ui.components.text.TextLink
 import com.RCS.my_app.ui.layouts.auth.CommonAuthLayout
@@ -63,6 +64,13 @@ fun RegisterScreen(
             )
         },
         bottomContent = {
+            Column (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .navigationBarsPadding()
+                    .padding(bottom = 32.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ){
             GlassButton(
                 text = "Registrarse",
                 onClick = { onRegisterSuccess() },
@@ -74,6 +82,7 @@ fun RegisterScreen(
                 onClick = onNavigateToLogin,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
+            }
         },
     )
 }

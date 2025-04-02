@@ -51,6 +51,14 @@ fun LoginScreen(
             )
         },
         bottomContent = {
+            Column (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .navigationBarsPadding()
+                    .padding(bottom = 32.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ){
+
             GlassButton(
                 text = "Ingresar",
                 onClick = {  },
@@ -62,6 +70,7 @@ fun LoginScreen(
                 onClick = onNavigateToRegister,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
+            }
         },
     )
 }
