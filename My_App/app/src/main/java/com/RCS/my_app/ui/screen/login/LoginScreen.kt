@@ -1,7 +1,7 @@
+// app/ui/screens/login/LoginScreen.kt
 package com.RCS.my_app.ui.screens.login
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
@@ -9,17 +9,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.RCS.my_app.ui.components.buttons.GlassButton
 import com.RCS.my_app.ui.components.text.TextLink
 import com.RCS.my_app.ui.layouts.auth.CommonAuthLayout
+import com.RCS.my_app.ui.layouts.auth.AuthTextField
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
     onNavigateBack: () -> Unit,
@@ -37,14 +32,17 @@ fun LoginScreen(
                 value = email,
                 onValueChange = { email = it },
                 label = "Correo electrónico",
-                icon = Icons.Default.Email
+                icon = Icons.Default.Email,
+                modifier = Modifier.fillMaxWidth()
             )
+            Spacer(modifier = Modifier.height(16.dp))
             AuthTextField(
                 value = password,
                 onValueChange = { password = it },
                 label = "Contraseña",
                 icon = Icons.Default.Lock,
-                isPassword = true
+                isPassword = true,
+                modifier = Modifier.fillMaxWidth()
             )
             TextLink(
                 text = "¿Olvidaste tu contraseña?",
@@ -55,39 +53,15 @@ fun LoginScreen(
         bottomContent = {
             GlassButton(
                 text = "Ingresar",
-                onClick = { onLoginSuccess() },
+                onClick = {  },
                 modifier = Modifier.fillMaxWidth()
             )
+            Spacer(modifier = Modifier.height(8.dp))
             TextLink(
                 text = "¿No tienes cuenta? Regístrate",
                 onClick = onNavigateToRegister,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
-        }
-    )
-}
-
-@Composable
-fun AuthTextField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    label: String,
-    icon: ImageVector,
-    isPassword: Boolean = false
-) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        label = { Text(label) },
-        leadingIcon = { Icon(icon, contentDescription = label) },
-        visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
-        keyboardOptions = if (isPassword) KeyboardOptions(keyboardType = KeyboardType.Password) else KeyboardOptions.Default,
-        modifier = Modifier.fillMaxWidth(),
-        colors = TextFieldDefaults.colors(
-            unfocusedContainerColor = Color.White.copy(alpha = 0.1f),
-            focusedContainerColor = Color.White.copy(alpha = 0.2f),
-            unfocusedTextColor = Color.White,
-            focusedTextColor = Color.White
-        )
+        },
     )
 }

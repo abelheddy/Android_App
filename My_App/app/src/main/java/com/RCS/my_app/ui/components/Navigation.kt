@@ -4,25 +4,34 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.RCS.my_app.ui.screen.login.LoginScreen
+import com.RCS.my_app.ui.screen.forgotpassword.ForgotPasswordScreen
 import com.RCS.my_app.ui.screen.inicial.LoginCreateAccountScreen
-import com.RCS.my_app.ui.screen.reguister.RegisterScreen
+
 import com.RCS.my_app.ui.screen.mainmenu.WelcomeScreen
+import com.RCS.my_app.ui.screens.login.LoginScreen
+import com.RCS.my_app.ui.screens.register.RegisterScreen
+
 // app/ui/navigation/NavGraph.kt
+
 @Composable
-fun AppNavGraph(navController: NavHostController) {
+fun AppNavGraph(
+    navController: NavHostController,
+    startDestination: String = "login_creator" // Pantalla inicial
+) {
     NavHost(
         navController = navController,
-        startDestination = "login_creator"
+        startDestination = startDestination
     ) {
+        // Pantalla inicial (Login/Crear cuenta)
         composable("login_creator") {
             LoginCreateAccountScreen(
                 onLoginClick = { navController.navigate("login") },
-                onCreateAccountClick = { navController.navigate("register") }
+                onCreateAccountClick = { navController.navigate("register") },
+                onBack = { navController.popBackStack() }
             )
         }
 
-        // Pantalla de Login
+        // Login
         composable("login") {
             LoginScreen(
                 onNavigateBack = { navController.popBackStack() },
@@ -31,11 +40,12 @@ fun AppNavGraph(navController: NavHostController) {
                         popUpTo("login_creator") { inclusive = true }
                     }
                 },
-                onNavigateToRegister = { navController.navigate("register") }
+                onNavigateToRegister = { navController.navigate("register") },
+                onNavigateToForgotPassword = { navController.navigate("forgot_password") }
             )
         }
 
-        // Pantalla de Registro
+        // Registro
         composable("register") {
             RegisterScreen(
                 onNavigateBack = { navController.popBackStack() },
@@ -48,7 +58,18 @@ fun AppNavGraph(navController: NavHostController) {
             )
         }
 
-        // Pantalla de Bienvenida (post-login)
+        // Recuperación de contraseña
+        composable("forgot_password") {
+            ForgotPasswordScreen(
+                onBack = { navController.popBackStack() },
+                onSendInstructions = { email ->
+                    // Lógica para enviar email (ej: Firebase Auth)
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        // Pantalla post-login (Home/Welcome)
         composable("welcome") {
             WelcomeScreen(
                 onLogout = {

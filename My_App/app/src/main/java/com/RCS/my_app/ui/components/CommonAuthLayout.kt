@@ -1,5 +1,6 @@
 package com.RCS.my_app.ui.layouts.auth
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -20,19 +21,20 @@ import com.RCS.my_app.R
 fun CommonAuthLayout(
     title: String,
     subtitle: String? = null,
+    modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit,
     bottomContent: @Composable ColumnScope.() -> Unit
 ) {
     val context = LocalContext.current
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        // Imagen de fondo
+    Box(modifier = modifier.fillMaxSize()) {
+        // Fondo con imagen
         AsyncImage(
             model = ImageRequest.Builder(context)
                 .data(R.drawable.login_background)
                 .crossfade(true)
                 .build(),
-            contentDescription = "Background",
+            contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
@@ -55,12 +57,14 @@ fun CommonAuthLayout(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(32.dp),
+                .padding(horizontal = 32.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            Spacer(modifier = Modifier.weight(1f))
-
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.headlineSmall.copy(
@@ -69,26 +73,22 @@ fun CommonAuthLayout(
                     textAlign = TextAlign.Center
                 )
                 subtitle?.let {
+                    Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = it,
                         style = MaterialTheme.typography.bodyLarge.copy(
                             color = Color.White.copy(alpha = 0.8f)
                         ),
-                        modifier = Modifier.padding(top = 8.dp)
+                        textAlign = TextAlign.Center
                     )
                 }
-            }
-
-            Column(
-                modifier = Modifier
-                    .weight(2f)
-                    .padding(vertical = 32.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
                 content()
             }
 
             Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 bottomContent()
