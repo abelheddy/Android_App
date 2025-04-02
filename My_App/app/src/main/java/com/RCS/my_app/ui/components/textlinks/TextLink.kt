@@ -1,58 +1,31 @@
-package com.RCS.my_app.ui.components.textlinks
+// app/ui/components/text/TextLink.kt
+package com.RCS.my_app.ui.components.text
 
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.text.ClickableText
-import androidx.compose.material3.LocalTextStyle
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 @Composable
 fun TextLink(
     text: String,
-    onClick: (() -> Unit)? = null,
-    url: String? = null,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colorScheme.primary,
-    fontSize: Int = 16,
-    underline: Boolean = true,
-    paddingValues: PaddingValues = PaddingValues(horizontal = 4.dp, vertical = 2.dp),
-    style: TextStyle = LocalTextStyle.current
+    color: Color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)
 ) {
-    val uriHandler = LocalUriHandler.current
-
-    val textStyle = style.merge(
-        TextStyle(
+    Text(
+        text = text,
+        style = MaterialTheme.typography.bodyMedium.copy(
             color = color,
-            fontSize = fontSize.sp,
-            textDecoration = if (underline) TextDecoration.Underline else TextDecoration.None
-        )
-    )
-
-    val annotatedString = buildAnnotatedString {
-        pushStyle(SpanStyle(color = color))
-        append(text)
-        pop()
-    }
-
-    ClickableText(
-        text = annotatedString,
-        onClick = {
-            if (url != null) {
-                uriHandler.openUri(url)
-            } else {
-                onClick?.invoke()
-            }
-        },
-        modifier = modifier,
-        style = textStyle
+            textDecoration = TextDecoration.Underline
+        ),
+        modifier = modifier
+            .clickable(onClick = onClick)
+            .padding(4.dp)
     )
 }

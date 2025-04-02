@@ -3,49 +3,47 @@ package com.RCS.my_app.ui.screen.mainmenu
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.*
+import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.RCS.my_app.ui.components.buttons.RoundedButton
 
-
+// app/ui/screens/mainmenu/WelcomeScreen.kt
 @Composable
-fun WelcomeScreen(onNavigateToLogin: () -> Unit,  // Cambiado de onLoginClick
-                  onNavigateToRegister: () -> Unit,  // Cambiado de onCreateAccountClick
-                  modifier: Modifier = Modifier
+fun WelcomeScreen(
+    onLogout: () -> Unit,  // Añade este parámetro
+    modifier: Modifier = Modifier
 ) {
-    Surface(modifier = modifier.fillMaxSize()) {
+    Box(modifier = modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier.padding(32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(24.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Help your path to health goals with happiness",
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.padding(bottom = 48.dp)
+                text = "¡Bienvenido!",
+                style = MaterialTheme.typography.headlineLarge,
+                modifier = Modifier.padding(bottom = 24.dp)
             )
 
-            // Botón de Login
-            RoundedButton(
-                text = "Login",
-                onClick = onNavigateToLogin,  // Usando el nuevo nombre
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(Modifier.height(16.dp))
-
-            // Botón de Registro
-            RoundedButton(
-                text = "Create New Account",
-                onClick = onNavigateToRegister,  // Usando el nuevo nombre
-                modifier = Modifier.fillMaxWidth()
-            )
+            Button(
+                onClick = onLogout,  // Usa el parámetro aquí
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp)
+                    .padding(horizontal = 32.dp)
+            ) {
+                Text("Cerrar Sesión")
+            }
         }
     }
 }
