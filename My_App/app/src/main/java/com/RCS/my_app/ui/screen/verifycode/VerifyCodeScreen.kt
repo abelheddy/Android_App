@@ -51,10 +51,13 @@ fun VerifyCodeScreen(
             )
         },
         bottomContent = {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .navigationBarsPadding()
+                    .padding(bottom = 32.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ){
                 Text(
                     text = "¿No recibiste el código? ",
                     style = MaterialTheme.typography.bodyMedium.copy(

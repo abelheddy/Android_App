@@ -12,7 +12,7 @@ import com.RCS.my_app.ui.screen.inicial.LoginCreateAccountScreen
 import com.RCS.my_app.ui.screen.mainmenu.WelcomeScreen
 import com.RCS.my_app.ui.screen.verifycode.VerifyCodeScreen
 import com.RCS.my_app.ui.screens.login.LoginScreen
-import com.RCS.my_app.ui.screens.register.RegisterScreen
+import com.RCS.my_app.ui.screen.reguister.RegisterScreen
 import com.RCS.my_app.ui.screen.forgotpassword.ResetPasswordScreen
 
 @Composable

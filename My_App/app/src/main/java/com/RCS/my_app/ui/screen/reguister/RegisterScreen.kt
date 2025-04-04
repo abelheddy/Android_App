@@ -1,5 +1,5 @@
 // app/ui/screens/register/RegisterScreen.kt
-package com.RCS.my_app.ui.screens.register
+package com.RCS.my_app.ui.screen.reguister
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
