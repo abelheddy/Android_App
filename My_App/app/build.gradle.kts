@@ -59,35 +59,35 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     //implementaciones
-    implementation("androidx.navigation:navigation-compose:2.8.9")
-    implementation ("androidx.compose.ui:ui:1.7.8")
-    implementation ("androidx.compose.material3:material3:1.3.1")
-    implementation ("androidx.compose.ui:ui-tooling-preview:1.7.8")
-    implementation ("androidx.activity:activity-compose:1.10.1")
-    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation(libs.navigation.compose)
+    implementation (libs.ui)
+    implementation (libs.androidx.compose.material3.material33)
+    implementation (libs.androidx.compose.ui.ui.tooling.preview)
+    implementation (libs.androidx.activity.compose)
+    implementation(libs.coil.kt.coil.compose)
     //implementation(libs.androidx.storage)
-    implementation("nl.dionsegijn:konfetti-compose:2.0.5")
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
-    implementation("androidx.compose.material3:material3:1.3.1")
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
-    implementation("io.coil-kt:coil-compose:2.7.0")
-    implementation("androidx.navigation:navigation-compose:2.8.9")
-    implementation("androidx.compose.material3:material3:1.3.1")
-    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation(libs.konfetti.compose)
+    implementation(libs.androidx.compose.material.material.icons.extended2)
+    implementation(libs.androidx.compose.material.material.icons.extended2)
+    implementation(libs.androidx.compose.material3.material33)
+    implementation(libs.androidx.compose.material.material.icons.extended2)
+    implementation(libs.coil.kt.coil.compose)
+    implementation(libs.navigation.compose)
+    implementation(libs.androidx.compose.material3.material33)
+    implementation(libs.coil.kt.coil.compose)
     // Compose
-    implementation("androidx.activity:activity-compose:1.10.1")
-    implementation("androidx.compose.material3:material3:1.3.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.7.8")
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3.material33)
+    implementation(libs.androidx.compose.ui.ui.tooling.preview)
     debugImplementation(libs.ui.tooling)
 
     // Coil for images
-    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation(libs.coil.kt.coil.compose)
 
     // Material icons extended
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
+    implementation(libs.androidx.compose.material.material.icons.extended2)
 
     // Navigation Compose
-    implementation("androidx.navigation:navigation-compose:2.8.9")
+    implementation(libs.navigation.compose)
 
 }
