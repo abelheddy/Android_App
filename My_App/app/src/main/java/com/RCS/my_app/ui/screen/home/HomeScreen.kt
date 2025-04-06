@@ -1,4 +1,4 @@
-package com.RCS.my_app.ui.screen.mainmenu
+package com.RCS.my_app.ui.screen.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,35 +8,31 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.RCS.my_app.ui.components.*
-import com.RCS.my_app.ui.components.buttons.RecipeFloatingActionButton
 import com.RCS.my_app.ui.components.cards.FeaturedRecipeCard
 import com.RCS.my_app.ui.components.cards.PopularRecipeCard
 import com.RCS.my_app.ui.components.navigation.AppBottomNavBar
 import com.RCS.my_app.ui.components.sections.CategorySection
 import com.RCS.my_app.ui.components.sections.SectionTitle
-import com.RCS.my_app.ui.screen.notifications.NotificationsScreen
-import com.RCS.my_app.ui.screen.profile.ProfileScreen
-import com.RCS.my_app.ui.screen.search.SearchScreen
+import com.RCS.my_app.ui.components.buttons.RecipeFloatingActionButton
 
 @Composable
 fun HomeScreen(
     onNavigate: (String) -> Unit,
+    currentRoute: String,
+    onAddRecipeClick: () -> Unit,
+    onViewRecipesClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
-        bottomBar = {
-            AppBottomNavBar(
-                currentRoute = "home",
-                onItemClick = onNavigate
-            )
-        },
+        bottomBar = { AppBottomNavBar(currentRoute, onNavigate) },
         floatingActionButton = {
-            AppFloatingActionButton(
-                onClick = { /* TODO */ }
+            RecipeFloatingActionButton(
+                onAddRecipeClick = onAddRecipeClick,
+                onViewRecipesClick = onViewRecipesClick
             )
         },
         floatingActionButtonPosition = FabPosition.Center
-    ) { paddingValues ->
+    ){ paddingValues ->
         LazyColumn(
             modifier = modifier
                 .fillMaxSize()

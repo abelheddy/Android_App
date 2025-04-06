@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.RCS.my_app.ui.screen.forgotpassword.ForgotPasswordScreen
 import com.RCS.my_app.ui.screen.inicial.LoginCreateAccountScreen
-import com.RCS.my_app.ui.screen.mainmenu.HomeScreen
+import com.RCS.my_app.ui.screen.home.HomeScreen
 import com.RCS.my_app.ui.screen.verifycode.VerifyCodeScreen
 import com.RCS.my_app.ui.screens.login.LoginScreen
 import com.RCS.my_app.ui.screen.reguister.RegisterScreen
@@ -157,6 +157,15 @@ fun AppNavGraph(
 
         composable("view_recipes") {
             ViewRecipesScreen(onBack = { navController.popBackStack() })
+        }
+        // ui/components/NavGraph.kt (fragmento relevante)
+        composable("home") {
+            HomeScreen(
+                currentRoute = "home",
+                onNavigate = { route -> navController.navigate(route) },
+                onAddRecipeClick = { navController.navigate("upload_recipe") },
+                onViewRecipesClick = { navController.navigate("view_recipes") }
+            )
         }
     }
 }
