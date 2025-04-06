@@ -80,7 +80,7 @@ dependencies {
     implementation(libs.androidx.compose.material3.material33)
     implementation(libs.androidx.compose.ui.ui.tooling.preview)
     debugImplementation(libs.ui.tooling)
-
+    implementation (libs.androidx.runtime.livedata)
     // Coil for images
     implementation(libs.coil.kt.coil.compose)
 

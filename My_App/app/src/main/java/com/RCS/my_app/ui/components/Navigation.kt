@@ -2,6 +2,7 @@
 package com.RCS.my_app.ui.components
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -23,11 +24,13 @@ import com.RCS.my_app.ui.screen.view.ViewRecipesScreen
 @Composable
 fun AppNavGraph(
     navController: NavHostController,
+    modifier: Modifier = Modifier,
     startDestination: String = "login_creator"
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination
+        startDestination = startDestination,
+        modifier = modifier
     ) {
         // Pantalla inicial (Login/Crear cuenta)
         composable("login_creator") {
