@@ -70,20 +70,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun AppNavGraph(
-    navController: NavHostController,
-    modifier: Modifier = Modifier,
-    startDestination: String = "login_creator"
-) {
-    NavHost(
-        navController = navController,
-        startDestination = startDestination,
-        modifier = modifier
-    ) {
-        // ... (todo tu código existente de navegación)
-    }
-}
 
 @Preview(showBackground = true)
 @Composable
