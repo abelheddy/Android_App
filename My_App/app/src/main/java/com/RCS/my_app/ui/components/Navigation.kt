@@ -9,11 +9,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.RCS.my_app.ui.screen.forgotpassword.ForgotPasswordScreen
 import com.RCS.my_app.ui.screen.inicial.LoginCreateAccountScreen
-import com.RCS.my_app.ui.screen.mainmenu.WelcomeScreen
+import com.RCS.my_app.ui.screen.mainmenu.HomeScreen
 import com.RCS.my_app.ui.screen.verifycode.VerifyCodeScreen
 import com.RCS.my_app.ui.screens.login.LoginScreen
 import com.RCS.my_app.ui.screen.reguister.RegisterScreen
 import com.RCS.my_app.ui.screen.forgotpassword.ResetPasswordScreen
+import com.RCS.my_app.ui.screen.notifications.NotificationsScreen
+import com.RCS.my_app.ui.screen.profile.ProfileScreen
+import com.RCS.my_app.ui.screen.search.SearchScreen
+import com.RCS.my_app.ui.screen.upload.UploadRecipeScreen
+import com.RCS.my_app.ui.screen.view.ViewRecipesScreen
 
 @Composable
 fun AppNavGraph(
@@ -125,16 +130,33 @@ fun AppNavGraph(
                 onBack = { navController.popBackStack() }
             )
         }
-
-        // Pantalla principal post-login
-        composable("welcome") {
-            WelcomeScreen(
-                onLogout = {
-                    navController.navigate("login_creator") {
-                        popUpTo("welcome") { inclusive = true }
-                    }
-                }
+        // Pantalla de search
+        composable("search") {
+            SearchScreen(
+                currentRoute = "search",
+                onNavigate = { route -> navController.navigate(route) }
             )
+        }
+        // Pantalla de notification
+        composable("notifications") {
+            NotificationsScreen(
+                currentRoute = "notifications",
+                onNavigate = { route -> navController.navigate(route) }
+            )
+        }
+        composable("profile") {
+            ProfileScreen(
+                currentRoute = "profile",
+                onNavigate = { route -> navController.navigate(route) }
+            )
+        }
+
+        composable("upload_recipe") {
+            UploadRecipeScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable("view_recipes") {
+            ViewRecipesScreen(onBack = { navController.popBackStack() })
         }
     }
 }

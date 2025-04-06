@@ -1,49 +1,97 @@
 package com.RCS.my_app.ui.screen.mainmenu
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.*
-import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.RCS.my_app.ui.components.buttons.RoundedButton
+import com.RCS.my_app.ui.components.*
+import com.RCS.my_app.ui.components.buttons.RecipeFloatingActionButton
+import com.RCS.my_app.ui.components.cards.FeaturedRecipeCard
+import com.RCS.my_app.ui.components.cards.PopularRecipeCard
+import com.RCS.my_app.ui.components.navigation.AppBottomNavBar
+import com.RCS.my_app.ui.components.sections.CategorySection
+import com.RCS.my_app.ui.components.sections.SectionTitle
+import com.RCS.my_app.ui.screen.notifications.NotificationsScreen
+import com.RCS.my_app.ui.screen.profile.ProfileScreen
+import com.RCS.my_app.ui.screen.search.SearchScreen
 
-// app/ui/screens/mainmenu/WelcomeScreen.kt
 @Composable
-fun WelcomeScreen(
-    onLogout: () -> Unit,  // Añade este parámetro
+fun HomeScreen(
+    onNavigate: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(24.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "¡Bienvenido!",
-                style = MaterialTheme.typography.headlineLarge,
-                modifier = Modifier.padding(bottom = 24.dp)
+    Scaffold(
+        bottomBar = {
+            AppBottomNavBar(
+                currentRoute = "home",
+                onItemClick = onNavigate
             )
+        },
+        floatingActionButton = {
+            AppFloatingActionButton(
+                onClick = { /* TODO */ }
+            )
+        },
+        floatingActionButtonPosition = FabPosition.Center
+    ) { paddingValues ->
+        LazyColumn(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(paddingValues),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
+            contentPadding = PaddingValues(bottom = 80.dp)
+        ) {
+            item {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "Good Morning",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Text(
+                        text = "Alena Sabyan",
+                        style = MaterialTheme.typography.headlineMedium
+                    )
+                }
+            }
 
-            Button(
-                onClick = onLogout,  // Usa el parámetro aquí
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp)
-                    .padding(horizontal = 32.dp)
-            ) {
-                Text("Cerrar Sesión")
+            item {
+                FeaturedRecipeCard(
+                    title = "Asian white noodle with extra seafood",
+                    author = "James Spader",
+                    time = "20 Min"
+                )
+            }
+
+            item {
+                CategorySection(categories = listOf("Breakfast", "Lunch", "Dinner"))
+            }
+
+            item {
+                SectionTitle(title = "Popular Recipes", showAll = true)
+            }
+
+            items(popularRecipes) { recipe ->
+                PopularRecipeCard(
+                    title = recipe.title,
+                    calories = recipe.calories,
+                    servings = recipe.servings,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
             }
         }
     }
 }
+
+private val popularRecipes = listOf(
+    Recipe("Healthy Taco Salad with fresh vegetable", "120", "2"),
+    Recipe("Japanese-style Pancakes Recipe", "64", "12")
+)
+
+data class Recipe(
+    val title: String,
+    val calories: String,
+    val servings: String
+)
