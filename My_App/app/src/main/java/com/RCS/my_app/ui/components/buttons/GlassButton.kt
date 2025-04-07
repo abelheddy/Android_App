@@ -24,7 +24,8 @@ fun GlassButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     tintColor: Color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
-    textColor: Color = Color.White
+    textColor: Color = Color.White,
+    enabled: Boolean = true,
 ) {
     Box(
         modifier = modifier
@@ -38,7 +39,8 @@ fun GlassButton(
                 color = tintColor.copy(alpha = 0.5f),
                 shape = RoundedCornerShape(12.dp)
             )
-            .clickable(onClick = onClick),
+            .clickable(onClick = onClick,
+                enabled = enabled ),
         contentAlignment = Alignment.Center
     ) {
         Text(
