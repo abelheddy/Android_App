@@ -40,24 +40,35 @@ class LoginViewModel : ViewModel() {
                 when {
                     response.isSuccessful -> {
                         response.body()?.let { loginResponse ->
+                            // Guardar el token en preferencias
+                            saveAuthToken(loginResponse.token)
+
                             _loginState.value = LoginState.Success(
                                 token = loginResponse.token,
                                 user = loginResponse.user
                             )
-                        } ?: run {
-                            _loginState.value = LoginState.Error("Empty response")
                         }
                     }
                     else -> {
-                        val errorMsg = response.errorBody()?.string() ?: "Unknown error"
+                        val errorBody = response.errorBody()?.string()
+                        val errorMsg = try {
+                            // Intenta parsear el error del backend Node.js
+                            val errorJson = JSONObject(errorBody)
+                            errorJson.getString("msg") ?: "Error desconocido"
+                        } catch (e: Exception) {
+                            "Credenciales incorrectas"
+                        }
                         _loginState.value = LoginState.Error(errorMsg)
                     }
                 }
             } catch (e: IOException) {
-                _loginState.value = LoginState.Error("Connection error")
+                _loginState.value = LoginState.Error("Error de conexión: ${e.message}")
             } catch (e: Exception) {
-                _loginState.value = LoginState.Error("Unexpected error: ${e.localizedMessage}")
+                _loginState.value = LoginState.Error("Error inesperado: ${e.localizedMessage}")
             }
         }
+    }
+    private fun saveAuthToken(token: String) {
+        // Implementa el guardado seguro del token (SharedPreferences o DataStore)
     }
 }

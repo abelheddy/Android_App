@@ -4,9 +4,13 @@ import com.RCS.my_app.api.ApiUserData
 import com.google.gson.annotations.SerializedName
 
 data class LoginResponse(
-    @SerializedName("access_token") val token: String,
-    @SerializedName("token_type") val tokenType: String,
-    val user: ApiUserData // Usa el nuevo nombre
+    @SerializedName("token") val token: String, // Cambiado de access_token
+    @SerializedName("user") val user: ApiUserData
+)
+
+data class BasicResponse(
+    @SerializedName("msg") val message: String,
+    @SerializedName("error") val error: String? = null
 )
 /*
 data class UserData(
