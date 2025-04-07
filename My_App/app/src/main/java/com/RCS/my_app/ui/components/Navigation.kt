@@ -59,10 +59,16 @@ fun AppNavGraph(
             RegisterScreen(
                 onNavigateBack = { navController.popBackStack() },
                 onRegisterSuccess = { email ->
-                    // Ahora recibe el email y lo pasa a la pantalla de verificación
-                    navController.navigate("verify_code/register/$email")
+                    // Navegar a pantalla de verificación o directamente a home
+                    navController.navigate("login") {
+                        popUpTo("auth") { inclusive = true }
+                    }
                 },
-                onNavigateToLogin = { navController.navigate("login") }
+                onNavigateToLogin = {
+                    navController.navigate("login") {
+                        popUpTo("register") { inclusive = true }
+                    }
+                }
             )
         }
         // Recuperación de contraseña

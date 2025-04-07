@@ -18,6 +18,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -37,6 +39,12 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+
+    packagingOptions {
+        exclude("META-INF/INDEX.LIST") // Excluir los archivos META-INF conflictivos
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/io.netty.versions.properties")
     }
 }
 
