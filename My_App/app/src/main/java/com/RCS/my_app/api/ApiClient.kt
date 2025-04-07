@@ -10,7 +10,7 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
-    private const val BASE_URL = "http://tudominio.epizy.com/"  // Asegúrate que es HTTP/HTTPS correcto
+    private const val BASE_URL = "https://bakcnode.onrender.com/"  // Asegúrate que es HTTP/HTTPS correcto
 
     // Configuración del logger
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
