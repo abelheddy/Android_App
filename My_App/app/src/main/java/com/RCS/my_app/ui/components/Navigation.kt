@@ -35,7 +35,7 @@ fun AppNavGraph(
         // Pantalla inicial (Login/Crear cuenta)
         composable("login_creator") {
             LoginCreateAccountScreen(
-                onLoginClick = { navController.navigate("login") },
+                onLoginClick = { navController.navigate("welcome") },
                 onCreateAccountClick = { navController.navigate("register") },
                 onBack = { navController.popBackStack() }
             )
